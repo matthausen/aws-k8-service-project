@@ -8,11 +8,12 @@ import bodyParser from 'body-parser';
 import {config} from './config/config';
 import {V0_FEED_MODELS, V0_USER_MODELS} from './controllers/v0/model.index';
 
-
 (async () => {
   await sequelize.addModels(V0_FEED_MODELS);
   await sequelize.addModels(V0_USER_MODELS);
   await sequelize.sync();
+
+  console.log('runnign hree')
 
   const app = express();
   const port = process.env.PORT || 8080;
