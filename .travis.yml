@@ -10,9 +10,10 @@ services:
   - docker
 
 before_script:
-  - echo "no tests to run"
+  - echo "Nothing to run here"
 
 script:
+  # Build the frontend ionic service
   - docker build -t udagram-frontend udagram-frontend/
   - docker tag udagram-frontend  matthausen/udagram-frontend:latest
   #- docker build -t udagram-api udagram-api/
