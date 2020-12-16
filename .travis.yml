@@ -20,11 +20,7 @@ script:
   # Build the feed service api
   - docker build -t matthausen/udagram-api-feed ./udagram-api/feed
   # Build the frontend ionic service
-  - cd ./udagram-frontend
-  - yarn install
-  - yarn build
-  - docker build -t matthausen/udagram-client .
-  - docker push matthausen/udagram-client
+  - docker build -t matthausen/udagram-client ./udagram-frontend
 
 after_success: 
   - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin
