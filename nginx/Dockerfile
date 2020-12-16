@@ -1,5 +1,5 @@
 FROM nginx:alpine
 
-COPY ngnix.conf /etc/nginx.conf
+COPY nginx.conf /etc/nginx/nginx.conf
 
 EXPOSE 8080
