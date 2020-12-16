@@ -1,13 +1,13 @@
-FROM node:13-alpine as build
-
-WORKDIR /app
-
-COPY package*.json /app/
-
-RUN npm i -g @ionic/cli
-
-RUN npm install
-
-COPY ./ /app/
-
-RUN ionic build && ionic serve
+## Build
+FROM beevelop/ionic:latest AS ionic
+# Create app directory
+WORKDIR /usr/src/app
+# Install app dependencies
+# A wildcard is used to ensure both package.json AND package-lock.json are copied
+# where available (npm@5+)
+COPY package*.json ./
+RUN npm ci
+# Bundle app source
+COPY . .
+RUN ionic build
+CMD ["ionic", "serve", "--external"]

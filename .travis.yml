@@ -10,14 +10,21 @@ services:
   - docker
 
 before_script:
-  - echo "no tests to run"
+  - echo "Nothing to run here"
 
 script:
-  - docker build -t udagram-frontend udagram-frontend/
-  - docker tag udagram-frontend  matthausen/udagram-frontend:latest
-  #- docker build -t udagram-api udagram-api/
-  #- docker tag udagram-api matthausewn/udagram-api:latest
+  # Build the nginx proxy server
+  - dockder build -t matthausen/udagram-proxy nginx/
+  # Build the frontend ionic service
+  - docker build -t matthausen/udagram-client udagram-frontend/
+  # Build the user service api
+  - docker build -t matthausen/udagram-api-user udagram-api/user
+  # Build the feed service api
+  - docker build -t matthausen/udagram-api-feed udagram-api/feed
 
 after_success: 
   - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin
-  - docker push matthausen/udagram-frontend
+  - docker push matthausen/udagram-proxy
+  - docker push matthausen/udagram-client
+  - docker push matthausen/udagram-api-user
+  - docker push matthausen/udagram-api-feed
