@@ -1,0 +1,30 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    service: reverseproxy-gateway
+  name: reverseproxy-gateway
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      service: reverseproxy-gateway
+  template:
+    metadata:
+      labels:
+        service: reverseproxy-gateway
+    spec:
+      containers:
+        - image: matthausen/udagram-proxy:latest
+          resources:
+            requests:
+              memory: '64Mi'
+              cpu: '250m'
+            limits:
+              memory: '1024Mi'
+              cpu: '500m'
+          name: reverseproxy-gateway
+          imagePullPolicy: Always
+          ports:
+            - containerPort: 8080
+      restartPolicy: Always
