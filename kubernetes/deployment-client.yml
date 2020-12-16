@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
       - name: udagram-api
-        image: matthausen/udagram-api
+        image: matthausen/udagram-client
         ports:
         - containerPort: 80
 

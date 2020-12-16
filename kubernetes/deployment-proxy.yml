@@ -15,7 +15,7 @@ spec:
         service: reverseproxy-gateway
     spec:
       containers:
-        - image: matthausen/udagram-proxy:latest
+        - image: matthausen/udagram-micro-nginx:latest
           resources:
             requests:
               memory: '64Mi'
