@@ -2,29 +2,32 @@ language: node_js
 node_js:
   - 13
 
-deploy:
-  on:
-    branch: master
-
 services:
   - docker
 
-before_script:
-  - echo "Nothing to run here"
+branches:
+  only:
+    - master
 
 script:
-  # Build the nginx proxy server
-  - docker build -t matthausen/udagram-proxy ./nginx
-  # Build the user service api
-  - docker build -t matthausen/udagram-api-user ./udagram-api/user
-  # Build the feed service api
-  - docker build -t matthausen/udagram-api-feed ./udagram-api/feed
-  # Build the frontend ionic service
-  - docker build -t matthausen/udagram-client ./udagram-frontend
-
-after_success: 
+  # login to docker hub
   - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin
-  - docker push matthausen/udagram-proxy
-  - docker push matthausen/udagram-client
-  - docker push matthausen/udagram-api-user
+
+  # Build the nginx proxy gateway
+  - docker build -t matthausen/udagram-micro-nginx ./nginx
+  - docker push matthausen/udagram-micro-nginx
+
+  # Build and push feed service
+  - docker build -t matthausen/udagram-api-feed ./udagram-api/feed
   - docker push matthausen/udagram-api-feed
+
+  # build and push users service
+  - docker build -t matthausen/udagram-api-user ./udagram-api/user
+  - docker push matthausen/udagram-api-user
+
+  # build and push client
+  - cd ./udagram-frontend
+  - yarn install
+  - yarn build
+  - docker build -t matthausen/udagram-client .
+  - docker push matthausen/udagram-client
