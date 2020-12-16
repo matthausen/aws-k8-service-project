@@ -1,3 +1,15 @@
+# Create a kubernetes cluster via CLI:
+ - `eksctl create cluster --name CLUSTER_NAME --nodes-min=2`
+
+## Configure kubectl:
+- `aws eks --region REGION update-kubeconfig --name CLUSTER_NAME`
+
+## Verify configuration and other userful commands:
+- `kubectl congig view`
+- `kubectl get pods`
+- `kubectl describe service`
+- `kubectl apply -f path/to/deployment.yaml`
+
 # Udagram Image Filtering Application
 
 Udagram is a simple cloud application developed alongside the Udacity Cloud Engineering Nanodegree. It allows users to register and log into a web client, post photos to the feed, and process photos using an image filtering microservice.
