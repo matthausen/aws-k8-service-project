@@ -5,11 +5,20 @@
 - `aws eks --region REGION update-kubeconfig --name CLUSTER_NAME`
 
 ## Verify configuration and other userful commands:
-- `kubectl congig view`
+- `kubectl config view`
 - `kubectl get pods`
 - `kubectl describe service`
+
+## Apply yml file
 - `kubectl apply -f path/to/deployment.yaml`
+
+## Delete pods, services, deployments etc.
 - `kubectl delete daemonsets,replicasets,services,deployments,pods,rc --all`
+
+## Create and get k8 secrets:
+- `kubectl create secret generic SECRET_NAME --from-literal=KEY=VALUE`
+
+- `kubectl get secrets`
 
 # Udagram Image Filtering Application
 
