@@ -9,6 +9,7 @@
 - `kubectl get pods`
 - `kubectl describe service`
 - `kubectl apply -f path/to/deployment.yaml`
+- `kubectl delete daemonsets,replicasets,services,deployments,pods,rc --all`
 
 # Udagram Image Filtering Application
 
