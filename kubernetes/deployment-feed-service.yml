@@ -76,7 +76,7 @@ spec:
       targetPort: 8080
 ---
 apiVersion: autoscaling/v1
-kind: HorizontalPodAutoscaler
+kind: hpa
 metadata:
   name: feed-autoscaler
 spec:
